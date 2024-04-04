@@ -1,0 +1,177 @@
+/* ================================== google fonts ================================== */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+/* ================================== custom variables ================================== */
+:root {
+  --white: #edf2f4;
+  --black: #252525;
+  --red: #ff385c;
+  --grey: #acacac;
+  --box-shadow: 0 0 10px 6px #d5d5d5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+.projectdetails-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-transform: capitalize;
+  margin: 10px auto;
+}
+
+.headline {
+  font-weight: normal;
+  color: var(--black);
+}
+
+.description {
+  color: var(--grey);
+  font-weight: 500;
+}
+
+.center-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.draggable-slider-container {
+  max-width: 80vw;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.cards-container {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% / 3) - 12px);
+  gap: 15px;
+  padding: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+.cards-container.dragging {
+  scroll-behavior: auto;
+  scroll-snap-type: none;
+}
+
+/* =============================================== slider is moving as the user's cursor is grabbing mouse ko daba k istemal krna mousedown event then so the text won't get selected that's why user select none & draggable false set to images as well so that images soul won't be released while dragging the slider =============================================== */
+.cards-container.dragging .card {
+  cursor: grab;
+  user-select: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 1rem;
+  border-radius: 10px;
+  position: relative;
+  scroll-snap-align: start;
+  box-shadow: var(--box-shadow);
+}
+
+.photobox {
+  height: 10rem;
+  width: 10rem;
+}
+
+.photo {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  border: 2px solid var(--red);
+  padding: 5px;
+  object-position: center;
+  object-fit: cover;
+}
+
+.socialmedia-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  right: 7px;
+  top: 13px;
+  gap: 10px;
+}
+
+.socialmedia-icons i {
+  color: var(--red);
+  box-shadow: var(--box-shadow);
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.contentbox .username {
+  color: var(--white);
+  text-align: center;
+  color: var(--black);
+  font-weight: normal;
+}
+
+.contentbox .designation {
+  color: var(--grey);
+  text-align: center;
+  font-weight: 600;
+}
+
+.draggable-slider-container > i {
+  padding: 5px;
+  z-index: 1;
+  cursor: pointer;
+  box-shadow: var(--box-shadow);
+  border-radius: 50%;
+  color: var(--red);
+}
+
+#leftarrowicon {
+  position: absolute;
+  top: 35%;
+  left: -6%;
+}
+
+#rightarrowicon {
+  position: absolute;
+  top: 35%;
+  right: -6%;
+}
+
+/* ================================== media query ================================== */
+@media screen and (max-width: 900px) {
+  .cards-container {
+    grid-auto-columns: calc((100% / 2) - 4px);
+  }
+  .draggable-slider-container {
+    max-width: 80vw;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .cards-container {
+    grid-auto-columns: calc(100% - 2px);
+  }
+  .draggable-slider-container {
+    max-width: 80vw;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
