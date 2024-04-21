@@ -1,9 +1,21 @@
 const arrow_btns = document.querySelectorAll(".draggable-slider-container i");
 const cards_container = document.querySelector(".cards-container");
 const first_card_width = cards_container.querySelector(".card").offsetWidth;
+const all_cards = document.querySelectorAll(".card");
 // ================================== cardscontainer.queryselector having card means the cards container's first elemtn having class of card & .offsetwidth gives the width of the particular element ==================================
 let is_dragging = false;
 let startX, startscroll_left;
+let current_slide_index = 0;
+
+const auto_scroll_slider = () => {
+  cards_container.scrollLeft += first_card_width;
+  // ================================== check if we have reached the end of the slider ==================================
+  if(cards_container.scrollLeft >= (cards_container.scrollWidth - cards_container.offsetWidth)) {
+    // ============================ if reached the end then set the cards container's scrolleft to 0 ============================
+    cards_container.scrollLeft = 0;
+  }
+};
+const intervalid = setInterval(auto_scroll_slider, 1000);
 
 arrow_btns.forEach((single_arrow_btn) => {
   single_arrow_btn.addEventListener("click", (e) => {
